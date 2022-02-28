@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Filtros</title>
+</head>
+<body>
+    <div>
+        <input type="text" name="Busqueda" id="palabra">
+        <button id="Buscar">Buscar palabra</button>
+    </div>
+    <div id="escribir"></div>
+    
+    <script>
+        $(document).ready(function(){
+                $("#Buscar").click(function(){
+                        var valor=$("#palabra").val();
+                        $.ajax({
+                                type: 'GET',
+                                url: 'Codigo.php',
+                                data: {'busqueda':valor},
+
+                                success: function(data){
+                                    if(data.match(valor)){
+                                        $("#escribir").text("Si esta");
+                                    }
+                                    else{
+                                        $("#escribir").text("No esta");
+                                    }
+                                },
+                                error: function(){
+
+                                }
+                            }
+                        )
+                    }
+                )
+            }
+        )
+    </script>
+
+</body>
+</html>
